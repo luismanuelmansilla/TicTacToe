@@ -31,11 +31,14 @@ var HelloWorldLayer = cc.Layer.extend({
         
             if(juego.turn == 'X'){
                 executePlay();
-                juego.turn = '0';
-
+                if(ifPlay){
+                    juego.turn = '0';
+                }
             } else{
                 executePlay();
-                juego.turn = 'X';
+                if(ifPlay){
+                    juego.turn = 'X';
+                }
             }
         
         function executePlay(){
