@@ -2,7 +2,8 @@ var endGame = false;
 
 var HelloWorldLayer = cc.Layer.extend({
     sprite:null,
-    turn:'x',
+    turn:'X',
+    first: 'X',
     contTurn:0,
     imgLine1:[3],
     imgLine2:[3],
@@ -17,6 +18,9 @@ var HelloWorldLayer = cc.Layer.extend({
     puntajePlayerX: 0,
     puntajePlayer0: 0,
     puntajeTies: 0,
+    LabelPlayerX:0,
+    LabelPlayer0:0,
+    LabelTies:0,
     
     jugar: function(location, event){
 		var juego = event.getCurrentTarget();
@@ -25,24 +29,24 @@ var HelloWorldLayer = cc.Layer.extend({
         
         if(!juego.endGame){
         
-            if(juego.turn == 'x'){
+            if(juego.turn == 'X'){
                 executePlay();
                 juego.turn = '0';
 
             } else{
                 executePlay();
-                juego.turn = 'x';
+                juego.turn = 'X';
             }
         
         function executePlay(){
             //alert("X: " + ubicacion.x + " Y: " + ubicacion.y);
-            if(ubicacion.x < 393 && ubicacion.y >405){
+            if(ubicacion.x < 393 && ubicacion.y >405 && juego.playA[0]==''){
                 //Esquina superior izquierda
-                if(juego.turn == 'x'){
+                if(juego.turn == 'X'){
                     juego.imgLine1[0] = new cc.Sprite(res.X_png);
                     juego.imgLine1[0].setPosition(300,500);
                     juego.addChild(juego.imgLine1[0], 1);
-                    juego.playA[0] = 'x';
+                    juego.playA[0] = 'X';
                 }
                 else{
                     juego.imgLine1[0] = new cc.Sprite(res.O_png);
@@ -52,13 +56,13 @@ var HelloWorldLayer = cc.Layer.extend({
                 }
                 juego.contTurn++;
                 ifPlay = true;
-            }else if(ubicacion.x >393 && ubicacion.x <568 && ubicacion.y >405){
+            }else if(ubicacion.x >393 && ubicacion.x <568 && ubicacion.y >405 && juego.playA[1]==''){
                 //Superior
-                if(juego.turn == 'x'){
+                if(juego.turn == 'X'){
                     juego.imgLine1[1] = new cc.Sprite(res.X_png);
                     juego.imgLine1[1].setPosition(480, 500);
                     juego.addChild(juego.imgLine1[1], 1);
-                    juego.playA[1] = 'x';
+                    juego.playA[1] = 'X';
                 }
                 else{
                     juego.imgLine1[1] = new cc.Sprite(res.O_png);
@@ -68,13 +72,13 @@ var HelloWorldLayer = cc.Layer.extend({
                 }
                 juego.contTurn++;
                 ifPlay = true;
-            } else if(ubicacion.x >570 && ubicacion.y >405){
+            } else if(ubicacion.x >570 && ubicacion.y >405 && juego.playA[2]==''){
                 //Esquina superior derecha
-                if(juego.turn == 'x'){
+                if(juego.turn == 'X'){
                     juego.imgLine1[2] = new cc.Sprite(res.X_png);
                     juego.imgLine1[2].setPosition(660, 500);
                     juego.addChild(juego.imgLine1[2], 1);
-                    juego.playA[2] = 'x';
+                    juego.playA[2] = 'X';
                 }
                 else{
                     juego.imgLine1[2] = new cc.Sprite(res.O_png);
@@ -84,13 +88,13 @@ var HelloWorldLayer = cc.Layer.extend({
                 }
                 juego.contTurn++;
                 ifPlay = true;
-            } else if(ubicacion.x < 394 && ubicacion.y <405 && ubicacion.y >230){
+            } else if(ubicacion.x < 394 && ubicacion.y <405 && ubicacion.y >230 && juego.playB[0]==''){
                 //Izquierda
-                if(juego.turn == 'x'){
+                if(juego.turn == 'X'){
                     juego.imgLine2[0] = new cc.Sprite(res.X_png);
                     juego.imgLine2[0].setPosition(300,318);
                     juego.addChild(juego.imgLine2[0], 1);
-                    juego.playB[0] = 'x';
+                    juego.playB[0] = 'X';
                 }
                 else{
                     juego.imgLine2[0] = new cc.Sprite(res.O_png);
@@ -100,13 +104,13 @@ var HelloWorldLayer = cc.Layer.extend({
                 }
                 juego.contTurn++;
                 ifPlay = true;
-            } else if(ubicacion.x >570 && ubicacion.y <405 && ubicacion.y >230){
+            } else if(ubicacion.x >570 && ubicacion.y <405 && ubicacion.y >230 && juego.playB[2]==''){
                 //Derecha
-                if(juego.turn == 'x'){
+                if(juego.turn == 'X'){
                     juego.imgLine2[2] = new cc.Sprite(res.X_png);
                     juego.imgLine2[2].setPosition(660, 318);
                     juego.addChild(juego.imgLine2[2], 1);
-                    juego.playB[2] = 'x';
+                    juego.playB[2] = 'X';
                 }
                 else{
                     juego.imgLine2[2] = new cc.Sprite(res.O_png);
@@ -116,13 +120,13 @@ var HelloWorldLayer = cc.Layer.extend({
                 }
                 juego.contTurn++;
                 ifPlay = true;
-            } else if(ubicacion.x <392 && ubicacion.y <227){
+            } else if(ubicacion.x <392 && ubicacion.y <227 && juego.playC[0]==''){
             //    alert("Esquina inferior izquierda");
-                if(juego.turn == 'x'){
+                if(juego.turn == 'X'){
                     juego.imgLine3[0] = new cc.Sprite(res.X_png);
                     juego.imgLine3[0].setPosition(300,136);
                     juego.addChild(juego.imgLine3[0], 1);
-                    juego.playC[0] = 'x';
+                    juego.playC[0] = 'X';
                 }
                 else{
                     juego.imgLine3[0] = new cc.Sprite(res.O_png);
@@ -132,13 +136,13 @@ var HelloWorldLayer = cc.Layer.extend({
                 }
                 juego.contTurn++;
                 ifPlay = true;
-            } else if(ubicacion.x >394 && ubicacion.x<567 && ubicacion.y <227){
+            } else if(ubicacion.x >394 && ubicacion.x<567 && ubicacion.y <227 && juego.playC[1]==''){
             //    alert("Inferior");
-                if(juego.turn == 'x'){
+                if(juego.turn == 'X'){
                     juego.imgLine3[1] = new cc.Sprite(res.X_png);
                     juego.imgLine3[1].setPosition(480,136);
                     juego.addChild(juego.imgLine3[1], 1);
-                    juego.playC[1] = 'x';
+                    juego.playC[1] = 'X';
                 }
                 else{
                     juego.imgLine3[1] = new cc.Sprite(res.O_png);
@@ -148,13 +152,13 @@ var HelloWorldLayer = cc.Layer.extend({
                 }
                 juego.contTurn++;
                 ifPlay = true;
-            } else if(ubicacion.x >570 && ubicacion.y <227){
+            } else if(ubicacion.x >570 && ubicacion.y <227 && juego.playC[2]==''){
             //    alert("Esquina inferior derecha");
-                if(juego.turn == 'x'){
+                if(juego.turn == 'X'){
                     juego.imgLine3[2] = new cc.Sprite(res.X_png);
                     juego.imgLine3[2].setPosition(660,136);
                     juego.addChild(juego.imgLine3[2], 1);
-                    juego.playC[2] = 'x';
+                    juego.playC[2] = 'X';
                 }
                 else{
                     juego.imgLine3[2] = new cc.Sprite(res.O_png);
@@ -164,13 +168,13 @@ var HelloWorldLayer = cc.Layer.extend({
                 }
                 juego.contTurn++;
                 ifPlay = true;
-            } else{
+            } else if(ubicacion.x > 394 && ubicacion.x < 570 && ubicacion.y < 405 && ubicacion.y > 230 && juego.playB[1]==''){
                 //Centro
-                if(juego.turn == 'x'){
+                if(juego.turn == 'X'){
                     juego.imgLine2[1] = new cc.Sprite(res.X_png);
                     juego.imgLine2[1].setPosition(480, 318);
                     juego.addChild(juego.imgLine2[1], 1);
-                    juego.playB[1] = 'x';
+                    juego.playB[1] = 'X';
                 }
                 else{
                     juego.imgLine2[1] = new cc.Sprite(res.O_png);
@@ -184,8 +188,9 @@ var HelloWorldLayer = cc.Layer.extend({
         }
 
             if(ifPlay){
+                updateScore();
             //Chequeo Horizontal
-                if(juego.playA[0] == 'x' && juego.playA[1] == 'x' && juego.playA[2] == 'x'){ 
+                if(juego.playA[0] == 'X' && juego.playA[1] == 'X' && juego.playA[2] == 'X'){ 
                     juego.playerX++;
                     juego.endGame = true;
                     juego.win = 'X';
@@ -197,7 +202,7 @@ var HelloWorldLayer = cc.Layer.extend({
                     return true;
                 }
                 
-                if(juego.playB[0] == 'x' && juego.playB[1] == 'x' && juego.playB[2] == 'x'){ 
+                if(juego.playB[0] == 'X' && juego.playB[1] == 'X' && juego.playB[2] == 'X'){ 
                     juego.playerX++;
                     juego.endGame = true;
                     juego.win = 'X';
@@ -209,7 +214,7 @@ var HelloWorldLayer = cc.Layer.extend({
                     return true;
                 }
                 
-                if(juego.playC[0] == 'x' && juego.playC[1] == 'x' && juego.playC[2] == 'x'){ 
+                if(juego.playC[0] == 'X' && juego.playC[1] == 'X' && juego.playC[2] == 'X'){ 
                     juego.playerX++;
                     juego.win = 'X';
                     juego.endGame = true;
@@ -222,7 +227,7 @@ var HelloWorldLayer = cc.Layer.extend({
                 }
 
                 //Chequeo Vertical
-                if(juego.playA[0] == 'x' && juego.playB[0] == 'x' && juego.playC[0] == 'x'){
+                if(juego.playA[0] == 'X' && juego.playB[0] == 'X' && juego.playC[0] == 'X'){
                     juego.playerX++;
                     juego.endGame = true;
                     juego.win = 'X';
@@ -234,7 +239,7 @@ var HelloWorldLayer = cc.Layer.extend({
                     return true;
                 }
 
-                if(juego.playA[1] == 'x' && juego.playB[1] == 'x' && juego.playC[1] == 'x'){
+                if(juego.playA[1] == 'X' && juego.playB[1] == 'X' && juego.playC[1] == 'X'){
                     juego.playerX++;
                     juego.endGame = true;
                     juego.win = 'X';
@@ -246,7 +251,7 @@ var HelloWorldLayer = cc.Layer.extend({
                     return true;
                 }   
 
-                if(juego.playA[2] == 'x' && juego.playB[2] == 'x' && juego.playC[2] == 'x'){
+                if(juego.playA[2] == 'X' && juego.playB[2] == 'X' && juego.playC[2] == 'X'){
                     juego.playerX++;
                     juego.endGame = true;
                     juego.win = 'X';
@@ -259,7 +264,7 @@ var HelloWorldLayer = cc.Layer.extend({
                 }
 
                 //Chequeo Diagonal
-                if(juego.playA[0] == 'x' && juego.playB[1] == 'x' && juego.playC[2] == 'x'){
+                if(juego.playA[0] == 'X' && juego.playB[1] == 'X' && juego.playC[2] == 'X'){
                     juego.playerX++;
                     juego.endGame = true;
                     juego.win = 'X';
@@ -271,7 +276,7 @@ var HelloWorldLayer = cc.Layer.extend({
                     return true;
                 }
 
-                if(juego.playA[2] == 'x' && juego.playB[1] == 'x' && juego.playC[0] == 'x'){
+                if(juego.playA[2] == 'X' && juego.playB[1] == 'X' && juego.playC[0] == 'X'){
                     juego.playerX++;
                     juego.endGame = true;
                     juego.win = 'X';
@@ -290,15 +295,21 @@ var HelloWorldLayer = cc.Layer.extend({
             }
         }
         else{
-            //alert("Player(" + juego.win + ") WON!")
+            if(juego.first == 'X'){
+                juego.first = '0';
+            }else{
+                juego.first = 'X';
+            }
+            alert("Player(" + juego.win + ") WON!")
             resetBoard();
             updateScore();
+            
         }
         
         
         function resetBoard(){
             juego.sprite = null;
-            juego.turn = 'x';
+            juego.turn = juego.first;
             juego.contTurn = 0;
             juego.playA = ['','',''];
             juego.playB = ['','',''];
@@ -315,28 +326,82 @@ var HelloWorldLayer = cc.Layer.extend({
             juego.removeChild(juego.imgLine2[2],1);
             juego.removeChild(juego.imgLine3[0],1);
             juego.removeChild(juego.imgLine3[1],1);
-            juego.removeChild(juego.imgLine3[2],1);  
-            juego.removeChild(juego.puntajePlayerX,1);
-            juego.removeChild(juego.puntajePlayer0,1);
-            juego.removeChild(juego.puntajeTies,1);
+            juego.removeChild(juego.imgLine3[2],1);     
         }
         
         function updateScore(){
-            juego.puntajePlayerX = new cc.LabelTTF(juego.playerX, "Arial", 16);
-            juego.puntajePlayerX.x = 345;
-            juego.puntajePlayerX.y = 45;
-            juego.addChild(juego.puntajePlayerX, 1);
-            juego.puntajePlayer0 = new cc.LabelTTF(juego.playerO, "Arial", 16);
-            juego.puntajePlayer0.x = 515;
-            juego.puntajePlayer0.y = 45;
-            juego.addChild(juego.puntajePlayer0, 1);
-            juego.puntajeTies = new cc.LabelTTF(juego.ties, "Arial", 16);
-            juego.puntajeTies.x = 645;
-            juego.puntajeTies.y = 45;
-            juego.addChild(juego.puntajeTies, 1);   
+            juego.removeChild(juego.LabelPlayerX,1);
+            juego.removeChild(juego.LabelPlayer0,1);
+            juego.removeChild(juego.LabelTies,1);
+            juego.removeChild(juego.puntajePlayerX,1);
+            juego.removeChild(juego.puntajePlayer0,1);
+            juego.removeChild(juego.puntajeTies,1);
+            
+                if(juego.turn == 'X'){
+                    //Labels
+                    juego.LabelPlayerX = new cc.LabelTTF("Player 1 (X):", "Arial", 16);
+                    juego.LabelPlayerX.x = 290;
+                    juego.LabelPlayerX.y = 45;
+                    juego.addChild(juego.LabelPlayerX, 1);
+                    juego.LabelPlayer0 = new cc.LabelTTF("Player 2 (0):", "Arial", 16);
+                    juego.LabelPlayer0.x = 460;
+                    juego.LabelPlayer0.y = 45;
+                    juego.LabelPlayer0.setColor(cc.color(84,84,84));
+                    juego.addChild(juego.LabelPlayer0, 1);
+                    juego.LabelTies = new cc.LabelTTF("Ties:", "Arial", 16);
+                    juego.LabelTies.x = 610;
+                    juego.LabelTies.y = 45;
+                    juego.LabelTies.setColor(cc.color(84,84,84));
+                    juego.addChild(juego.LabelTies, 1);
+                    //Puntajes
+                    juego.puntajePlayerX = new cc.LabelTTF(juego.playerX, "Arial", 16);
+                    juego.puntajePlayerX.x = 345;
+                    juego.puntajePlayerX.y = 45;
+                    juego.addChild(juego.puntajePlayerX, 1);
+                    juego.puntajePlayer0 = new cc.LabelTTF(juego.playerO, "Arial", 16);
+                    juego.puntajePlayer0.x = 515;
+                    juego.puntajePlayer0.y = 45;
+                    juego.puntajePlayer0.setColor(cc.color(84,84,84));
+                    juego.addChild(juego.puntajePlayer0, 1);
+                    juego.puntajeTies = new cc.LabelTTF(juego.ties, "Arial", 16);
+                    juego.puntajeTies.x = 645;
+                    juego.puntajeTies.y = 45;
+                    juego.puntajeTies.setColor(cc.color(84,84,84));
+                    juego.addChild(juego.puntajeTies, 1);  
+                }else if(juego.turn == '0'){
+                    //Labels
+                    juego.LabelPlayer0 = new cc.LabelTTF("Player 2 (0):", "Arial", 16);
+                    juego.LabelPlayer0.x = 460;
+                    juego.LabelPlayer0.y = 45;
+                    juego.addChild(juego.LabelPlayer0, 1); 
+                    juego.LabelPlayerX = new cc.LabelTTF("Player 1 (X):", "Arial", 16);
+                    juego.LabelPlayerX.x = 290;
+                    juego.LabelPlayerX.y = 45;
+                    juego.LabelPlayerX.setColor(cc.color(84,84,84));
+                    juego.addChild(juego.LabelPlayerX, 1);
+                    juego.LabelTies = new cc.LabelTTF("Ties:", "Arial", 16);
+                    juego.LabelTies.x = 610;
+                    juego.LabelTies.y = 45;
+                    juego.LabelTies.setColor(cc.color(84,84,84));
+                    juego.addChild(juego.LabelTies, 1);
+                    //Puntajes
+                    juego.puntajePlayer0 = new cc.LabelTTF(juego.playerO, "Arial", 16);
+                    juego.puntajePlayer0.x = 515;
+                    juego.puntajePlayer0.y = 45;
+                    juego.addChild(juego.puntajePlayer0, 1);
+                    juego.puntajePlayerX = new cc.LabelTTF(juego.playerX, "Arial", 16);
+                    juego.puntajePlayerX.x = 345;
+                    juego.puntajePlayerX.y = 45;
+                    juego.puntajePlayerX.setColor(cc.color(84,84,84));
+                    juego.addChild(juego.puntajePlayerX, 1);
+                    juego.puntajeTies = new cc.LabelTTF(juego.ties, "Arial", 16);
+                    juego.puntajeTies.x = 645;
+                    juego.puntajeTies.y = 45;
+                    juego.puntajeTies.setColor(cc.color(84,84,84));
+                    juego.addChild(juego.puntajeTies, 1); 
+                }
         }
 },
-    
     ctor:function () {
         //////////////////////////////
         // 1. super init first
@@ -366,18 +431,21 @@ var HelloWorldLayer = cc.Layer.extend({
         });
         this.addChild(this.sprite, 0);
         
-        var LabelPlayerX = new cc.LabelTTF("Player (X):", "Arial", 16);
-        LabelPlayerX.x = 290;
-        LabelPlayerX.y = 45;
-        this.addChild(LabelPlayerX, 1);
-        var LabelPlayer0 = new cc.LabelTTF("Player (0):", "Arial", 16);
-        LabelPlayer0.x = 460;
-        LabelPlayer0.y = 45;
-        this.addChild(LabelPlayer0, 1);
-        var LabelTies = new cc.LabelTTF("Ties:", "Arial", 16);
-        LabelTies.x = 610;
-        LabelTies.y = 45;
-        this.addChild(LabelTies, 1);
+        
+        this.LabelPlayerX = new cc.LabelTTF("Player 1 (X):", "Arial", 16);
+        this.LabelPlayerX.x = 290;
+        this.LabelPlayerX.y = 45;
+        this.addChild(this.LabelPlayerX, 1);
+        this.LabelPlayer0 = new cc.LabelTTF("Player 2 (0):", "Arial", 16);
+        this.LabelPlayer0.x = 460;
+        this.LabelPlayer0.y = 45;
+        this.LabelPlayer0.setColor(cc.color(84,84,84));
+        this.addChild(this.LabelPlayer0, 1);
+        this.LabelTies = new cc.LabelTTF("Ties:", "Arial", 16);
+        this.LabelTies.x = 610;
+        this.LabelTies.y = 45;
+        this.LabelTies.setColor(cc.color(84,84,84));
+        this.addChild(this.LabelTies, 1); 
         
         cc.eventManager.addListener({
 			event: cc.EventListener.TOUCH_ONE_BY_ONE,
