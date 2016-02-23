@@ -1,7 +1,4 @@
 var endGame = false;
-var playerX = 0;
-var playerO = 0;
-var ties = 0;
 
 var HelloWorldLayer = cc.Layer.extend({
     sprite:null,
@@ -14,6 +11,12 @@ var HelloWorldLayer = cc.Layer.extend({
     playB:['','',''],
     playC:['','',''],
     win: '',
+    playerX: 0,
+    playerO: 0,
+    ties: 0,
+    puntajePlayerX: 0,
+    puntajePlayer0: 0,
+    puntajeTies: 0,
     
     jugar: function(location, event){
 		var juego = event.getCurrentTarget();
@@ -287,7 +290,7 @@ var HelloWorldLayer = cc.Layer.extend({
             }
         }
         else{
-            alert("Player(" + juego.win + ") WON!")
+            //alert("Player(" + juego.win + ") WON!")
             resetBoard();
             updateScore();
         }
@@ -312,19 +315,25 @@ var HelloWorldLayer = cc.Layer.extend({
             juego.removeChild(juego.imgLine2[2],1);
             juego.removeChild(juego.imgLine3[0],1);
             juego.removeChild(juego.imgLine3[1],1);
-            juego.removeChild(juego.imgLine3[2],1);   
+            juego.removeChild(juego.imgLine3[2],1);  
+            juego.removeChild(juego.puntajePlayerX,1);
+            juego.removeChild(juego.puntajePlayer0,1);
+            juego.removeChild(juego.puntajeTies,1);
         }
         
         function updateScore(){
-            var puntajePlayerX = new cc.LabelTTF(juego.playerX, "Arial", 16);
-            puntajePlayerX.setPosition(345,45);
+            juego.puntajePlayerX = new cc.LabelTTF(juego.playerX, "Arial", 16);
+            juego.puntajePlayerX.x = 345;
+            juego.puntajePlayerX.y = 45;
+            juego.addChild(juego.puntajePlayerX, 1);
+            juego.puntajePlayer0 = new cc.LabelTTF(juego.playerO, "Arial", 16);
+            juego.puntajePlayer0.x = 515;
+            juego.puntajePlayer0.y = 45;
             juego.addChild(juego.puntajePlayer0, 1);
-            var puntajePlayer0 = new cc.LabelTTF(juego.playerO, "Arial", 16);
-            puntajePlayer0.setPosition(515,45);
-            juego.addChild(juego.puntajeTies, 1);
-            var puntajeTies = new cc.LabelTTF(juego.ties, "Arial", 16);
-            puntajeTies.setPosition(645,45);
-            juego.addChild(juego.puntajeTies, 1);
+            juego.puntajeTies = new cc.LabelTTF(juego.ties, "Arial", 16);
+            juego.puntajeTies.x = 645;
+            juego.puntajeTies.y = 45;
+            juego.addChild(juego.puntajeTies, 1);   
         }
 },
     
