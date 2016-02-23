@@ -303,12 +303,10 @@ var HelloWorldLayer = cc.Layer.extend({
             }else{
                 juego.first = 'X';
             }
-            alert("Player(" + juego.win + ") WON!")
+            alert("Player(" + juego.win + ") WON!");
             resetBoard();
             updateScore();
-            
         }
-        
         
         function resetBoard(){
             juego.sprite = null;
