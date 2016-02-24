@@ -303,7 +303,13 @@ var HelloWorldLayer = cc.Layer.extend({
             }else{
                 juego.first = 'X';
             }
-            alert("Player(" + juego.win + ") WON!");
+            
+            if(juego.win == "TIES"){
+                alert("Player 1 vs Player 2 TIES!");
+            }else{
+                alert("Player(" + juego.win + ") WON!");
+            }
+           
             resetBoard();
             updateScore();
         }
